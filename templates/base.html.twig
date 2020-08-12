@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Bienvenue!
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/style.css"> {% block stylesheets %}{% endblock %}
+		</head>
+
+		<body>
+
+			{# navbar #}
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="{{ path('homepage') }}">Le verger des baudets</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor03">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('homepage') }}">Accueil
+							</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a href="#" class="nav-link">Mon compte</a>
+						</li>
+					</ul>
+
+				</div>
+			</nav>
+			{# .navbar #}
+
+
+			{% block body %}{% endblock %}
+
+
+			{# footer #}
+			<footer class="page-footer bg-danger text-white">
+				<div class="container">
+					<div class="row text-center justify-content-center pt-5 mb-3">
+						<div class="col-md-2 mb-3">
+							<h6 class="text-uppercase font-weight-bold">
+								<a class="text-white" href="#">A propos de nous</a>
+							</h6>
+						</div>
+
+						<div class="col-md-2 mb-3">
+							<h6 class="text-uppercase font-weight-bold">
+								<a href="#">Nos fruits</a>
+							</h6>
+						</div>
+
+						<div class="col-md-2 mb-3">
+							<h6 class="text-uppercase font-weight-bold">
+								<a href="#">Labels et certifications</a>
+							</h6>
+						</div>
+
+						<div class="col-md-2 mb-3">
+							<h6 class="text-uppercase font-weight-bold">
+								<a href="#">Contact</a>
+							</h6>
+						</div>
+					</div>
+					<hr class="rgba-white-light" style="margin: 0 15%;">
+					<div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+						<div class="col-md-8 col-12 mt-5">
+							<p style="line-height: 1.7rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta beatae natus earum veritatis quod repellat veniam fugit perferendis commodi molestiae!</p>
+						</div>
+					</div>
+					<hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+				</div>
+				<div class="footer-copyright text-center text-white py-3">© 2020 Copyright - Le verger des baudets</div>
+			</footer>
+			{# .footer #}
+
+
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/popper.min.js"></script>
+			<script src="/js/bootstrap.min.js"></script>
+			{% block javascripts %}{% endblock %}
+		</body>
+	</html>
