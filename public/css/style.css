@@ -1,0 +1,253 @@
+/* style.css
+Author : Isabelle MUSTIN
+www.levergerdesbaudets.fr
+*/
+
+/***/
+/*** general ***/
+:root {
+  --blueLvdb: rgba(5, 195, 221, 1);
+  --blue10Lvdb: rgba(5, 195, 221, 0.1);
+  --redLvdb: rgb(193, 18, 100, 1);
+  --red10Lvdb: rgba(193, 18, 100, 0.1);
+  --lightBlueLvdb: rgba(177, 228, 227, 1);
+  --orangeLvdb: rgb(250, 175, 23, 1);
+  --orange10Lvdb: rgb(250, 175, 23, 0.1);
+  --greenLvdb: rgb(133, 201, 55);
+  --lightGrayLvdb: rgba(217, 217, 214, 1);
+  --darkGrayLvdb: rgba(99, 102, 106, 1);
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.2em;
+  color: var(--darkGrayLvdb);
+  line-height: 1.2em;
+}
+
+/***/
+/*** typography ***/
+
+/*font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Source Code Pro', monospace;
+font-family: 'Abel', sans-serif;*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-weight: 400;
+}
+
+.semiBold {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/***/
+/*** colors ***/
+.bgBlue {
+  background-color: var(--blueLvdb);
+}
+
+.bgRed {
+  background-color: var(--redLvdb);
+}
+
+.bgGreen {
+  background-color: var(--greenLvdb);
+}
+
+.bgOrange {
+  background-color: var(--orangeLvdb);
+}
+
+.bgBlue10 {
+  background-color: var(--blue10Lvdb);
+}
+
+.bgLightGray {
+  background-color: var(--lightGrayLvdb);
+}
+
+.cRed {
+  color: var(--redLvdb);
+}
+
+.cOrange10 {
+  color: var(--orange10Lvdb);
+}
+
+.cBlue {
+  color: var(--blueLvdb);
+}
+
+.cGreen {
+  color: var(--greenLvdb);
+}
+
+/***/
+/*** buttons ***/
+.btn-blue {
+  color: white;
+  background-color: var(--blueLvdb);
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue:focus,
+.btn-blue.active {
+  background: var(--blue10Lvdb);
+  color: var(--blueLvdb);
+}
+
+.btn-outline {
+  color: var(--blueLvdb);
+  background-color: #fff;
+  border-color: var(--blueLvdb);
+  border-radius: 0.25;
+}
+
+.btn-outline:hover,
+.btn-outline:active,
+.btn-outline:focus,
+.btn-outline.active {
+  background: var(--blueLvdb);
+  color: #fff;
+  border-color: var(--blueLvdb);
+}
+
+/***/
+/*** shadow ***/
+.fruit-title p {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption p {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+/***/
+/*** category-image ***/
+.category img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 300px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .category img {
+    max-height: 200px;
+  }
+}
+
+.fruit-title {
+  background-size: cover;
+  background-position: center center;
+}
+
+/***/
+/*** links ***/
+#category a {
+  color: white;
+  text-decoration: none;
+}
+
+#category a:hover {
+  color: var(--orangeLvdb) !important;
+  text-decoration: none;
+}
+
+/***/
+/*** Footer1 ***/
+.footer1 {
+  font-size: 12px;
+  color: white;
+}
+
+.footer1 a {
+  color: white;
+}
+
+.footer1 a:hover {
+  color: var(--orangeLvdb) !important;
+}
+
+.footer1 .widget-title {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.follow-me-icons {
+  font-size: 30px;
+}
+
+.follow-me-icons i {
+  float: left;
+  margin: 0 20px 0 0;
+}
+
+/***/
+/*** Footer2 ***/
+.footer2 {
+  font-size: 12px;
+}
+
+.footer2 a {
+  color: white;
+}
+
+.footer2 a:hover {
+  color: black !important;
+}
+
+.footer2 p {
+  margin: 0;
+}
+
+.widget-simplenav {
+  margin-left: -5px;
+}
+
+.widget-simplenav a {
+  margin: 0 5px;
+}
+
+/***/
+/*** callout ***/
+.bd-callout {
+  margin-left: 1rem;
+  border: 0px solid var(--blueLvdb);
+  border-left-width: 0.5rem;
+  width: 100%;
+}
+
+.bd-callout h4 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.bd-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bd-callout code {
+  border-radius: 0.25rem;
+}
+
+.bd-callout + .bd-callout {
+  margin-top: -0.25rem;
+}
+
+@media (max-width: 768px) {
+  .bd-callout {
+    margin-left: 0px !important;
+  }
+}

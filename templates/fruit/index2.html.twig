@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les catégories
+{% endblock %}
+
+
+{% block body %}
+
+	<h1 class="bgBlue text-white text-center my-5 p-3">
+		{% block mytitle %}
+			Nos variétés de fruits anciens
+		{% endblock %}
+	</h1>
+
+
+	<div class="row">
+
+		{% for category in categories %}
+			<div class="col-md-12">
+				<h2 class=" bgGreen my-3 p-1 text-center text-white ">{{ category.title | capitalize }}</h2>
+				<blockquote class="blockquote text-center">
+					<p class="mb-0">{{ category.description }}</p>
+					<footer class="blockquote-footer">Someone famous in
+						<cite title="Source Title">Source Title</cite>
+					</footer>
+				</blockquote>
+			</div>
+		</div>
+
+		<div class="row">
+			{% for fruit in category.fruits %}
+
+				<div class="col-md-4 mb-5">
+					<div class="card h-100">
+						<div class=" h4 card-header text-center">
+							<strong>{{ fruit.price }}&euro;/kg</strong>
+						</div>
+
+						<img src="{{ fruit.coverImage }}" class="card-img-top" alt="Ce fruit se nomme {{ fruit.name }}" style="display:block">
+
+						<div class="card-body d-flex flex-column">
+							<h4 class="card-title text-center">{{ fruit.name }}</h4>
+							<h5>
+								<span class="badge badge-dark">{{ fruit.category.title }}</span>
+							</h5>
+							<p class="card-text">{{ fruit.introduction }}</p>
+							<a href="{{ path('fruits_show',{'slug':fruit.slug}) }}" class=" mt-auto btn btn-lg btn-block btn-dark">En savoir plus</a>
+						</div>
+					</div>
+				</div>
+				{# /.col-md-4 mb-5 #}
+
+
+			{% endfor %}
+			{# /for fruit in category.fruits #}
+		{% endfor %}
+		{# /for category in categories #}
+	</div>
+
+{% endblock %}

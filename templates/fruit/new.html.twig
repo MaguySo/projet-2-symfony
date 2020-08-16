@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un fruit{% endblock %}
+
+{% block mytitle %}Ajouter un fruit{% endblock %}
+
+{# Thème de formulaire - Packages -> twig.yaml #}
+{% form_theme form 'fruit/_collection.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <button type="submit" class="btn btn-dark mb-5">Inscrire un nouveau fruit</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/fruit.js"></script>    
+{% endblock %}
+
+

@@ -7,68 +7,65 @@
 
 {% block body %}
 
-	<div class="container my-5">
+	{% block mytitle %}{% endblock %}
+	<div class="jumbotron">
+		<h1 class="display-4">Le verger des baudets</h1>
+		<p class="lead">Nous produisons et vendons des variétés de fruits anciens.</p>
+		<hr class="my-4">
+		<p>Des trésors des Hauts de France à redécouvrir…</p>
+		<p class="lead">
+			<a class="btn btn-danger" href="{{ path('categories_index') }}" role="button">Découvrez notre verger</a>
+		</p>
+	</div>
 
-		<div class="jumbotron">
-			<h1 class="display-4">Le verger des baudets</h1>
-			<p class="lead">Nous produisons et vendons des variétés de fruits anciens.</p>
-			<hr class="my-4">
-			<p>Des trésors des Hauts de France à redécouvrir…</p>
-			<p class="lead">
-				<a class="btn btn-danger" href="#" role="button">En savoir plus</a>
-			</p>
+	{# apples list #}
+	<h2 class="h1 text-center mt-3 mb-4">Nos variétés de pommes les plus appréciées</h2>
+	<div class="row row-cols-1 row-cols-md-3">
+
+		<div class="col-md-4">
+			<div class="card h-100">
+				<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
+				<div class="card-body">
+					<h3 class="card-title text-center">Api étoilé</h3>
+					<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
+					<a href="#" class="btn btn-success btn-block">En savoir plus</a>
+				</div>
+				<div class="card-footer text-center border-success">
+					<strong>3 &euro; /kg</strong>
+				</div>
+			</div>
 		</div>
 
-		{# apples list #}
-		<h2 class="h1 text-center mt-3 mb-4">Nos variétés de pommes les plus appréciées</h2>
-		<div class="row row-cols-1 row-cols-md-3">
-
-			<div class="col mb-4">
-				<div class="card h-100">
-					<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
-					<div class="card-body">
-						<h3 class="card-title text-center">Api étoilé</h3>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
-						<a href="#" class="btn btn-success btn-block">En savoir plus</a>
-					</div>
-					<div class="card-footer text-center border-success">
-						<strong>3 &euro; /kg</strong>
-					</div>
+		<div class="col-md-4">
+			<div class="card h-100">
+				<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
+				<div class="card-body">
+					<h3 class="card-title text-center">Api étoilé</h3>
+					<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
+					<a href="#" class="btn btn-success btn-block">En savoir plus</a>
+				</div>
+				<div class="card-footer text-center border-success">
+					<strong>3 &euro; /kg</strong>
 				</div>
 			</div>
-
-			<div class="col mb-4">
-				<div class="card h-100">
-					<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
-					<div class="card-body">
-						<h3 class="card-title text-center">Api étoilé</h3>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
-						<a href="#" class="btn btn-success btn-block">En savoir plus</a>
-					</div>
-					<div class="card-footer text-center border-success">
-						<strong>3 &euro; /kg</strong>
-					</div>
-				</div>
-			</div>
-
-			<div class="col mb-4">
-				<div class="card h-100">
-					<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
-					<div class="card-body">
-						<h3 class="card-title text-center">Api étoilé</h3>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
-						<a href="#" class="btn btn-success btn-block">En savoir plus</a>
-					</div>
-					<div class="card-footer text-center border-success">
-						<strong>3 &euro; /kg</strong>
-					</div>
-				</div>
-			</div>
-
 		</div>
-		{# .apples list #}
 
+		<div class="col-md-4">
+			<div class="card h-100">
+				<img src="http://placehold.it/140x100" class="card-img-top" alt="..." style="display:block">
+				<div class="card-body">
+					<h3 class="card-title text-center">Api étoilé</h3>
+					<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus sapiente ipsa culpa sequi laudantium molestias consequuntur commodi ea itaque natus.</p>
+					<a href="#" class="btn btn-success btn-block">En savoir plus</a>
+				</div>
+				<div class="card-footer text-center border-success">
+					<strong>3 &euro; /kg</strong>
+				</div>
+			</div>
+		</div>
 
 	</div>
+	{# .apples list #}
+
 
 {% endblock %}
