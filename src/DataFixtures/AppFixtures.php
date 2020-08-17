@@ -3,18 +3,45 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Fruit;
 use App\Entity\Image;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {   $this->encoder = $encoder;        
+    }
+
+
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr-FR');
 
+        // USER        
+        for ($i=1; $i <=10 ; $i++) { 
+            $user = new User();
+
+            $password = $this->encoder->encodePassword($user, 'password');
+
+            $user->setFirstName($faker->firstName)
+                ->setLastName($faker->lastName)
+                ->setEmail($faker->email)
+                ->setPassword($password);
+
+                $manager->persist($user);
+        }
+        
+
+        
+        // CATEGORY - FRUIT        
         $category1 = new Category();
         $category1->setTitle("pommiers")
             ->setDescription("<p>" . join('</p><p>', $faker->paragraphs(5)) . "</p>")

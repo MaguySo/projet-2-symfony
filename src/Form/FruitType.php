@@ -3,8 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Fruit;
-use App\Entity\Category;
 use App\Form\ImageType;
+use App\Entity\Category;
+use App\Form\ApplicationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,85 +16,73 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class FruitType extends AbstractType
+class FruitType extends ApplicationType
 {
-    /**
-     * Définir la configuration de base d'un champ - Factorisation
-     * 
-     * @param string $label
-     * @param string $placeholder
-     * @param array $options
-     * @return array
-     */
-    private function getConfiguration($label, $placeholder, $options =[])
-    {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add(
-                'category', EntityType::class,
+                'category',
+                EntityType::class,
                 [
-                    'class'=> Category::class,
-                    'label'=> "Choisissez une catégorie",
-                    'choice_label'=>'title'
+                    'class' => Category::class,
+                    'label' => "Choisissez une catégorie",
+                    'choice_label' => 'title'
                 ]
             )
-            ->add('name',
+            ->add(
+                'name',
                 TextType::class,
-                $this->getConfiguration("Nom","Nom latin, nom commun, appelations…")
+                $this->getConfiguration("Nom", "Nom latin, nom commun, appelations…")
             )
 
-            ->add('slug',
+            ->add(
+                'slug',
                 TextType::class,
-                $this->getConfiguration("Slug","Automatique",[
+                $this->getConfiguration("Slug", "Automatique", [
                     'required' => false
                 ])
             )
 
-            ->add('introduction',
+            ->add(
+                'introduction',
                 TextType::class,
-                $this->getConfiguration("Introduction","Présentation sommaire, citation…")
+                $this->getConfiguration("Introduction", "Présentation sommaire, citation…")
             )
 
-            ->add('content',
+            ->add(
+                'content',
                 TextareaType::class,
-                $this->getConfiguration("Contenu","Description détaillée du fruit…")
+                $this->getConfiguration("Contenu", "Description détaillée du fruit…")
             )
 
-            ->add('price',
+            ->add(
+                'price',
                 MoneyType::class,
-                $this->getConfiguration("Prix/kg","Indiquez le prix…")
+                $this->getConfiguration("Prix/kg", "Indiquez le prix…")
             )
 
-            ->add('coverImage',
+            ->add(
+                'coverImage',
                 UrlType::class,
-                $this->getConfiguration("URL de l'image principale","Misez sur une belle photo qui donne envie de dévorer des fruits à pleines dents !")
+                $this->getConfiguration("URL de l'image principale", "Misez sur une belle photo qui donne envie de dévorer des fruits à pleines dents !")
             )
 
-            ->add('images',
+            ->add(
+                'images',
                 CollectionType::class,
                 [
                     'entry_type' => ImageType::class,
                     'allow_add' => true,
                     'allow_delete' => true
                 ]
-            )    
-        ;
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Fruit::class,
-            ]
-        );
+        ]);
     }
 }
