@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Fruit;
 use App\Entity\Image;
@@ -16,7 +17,8 @@ class AppFixtures extends Fixture
     private $encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
-    {   $this->encoder = $encoder;        
+    {
+        $this->encoder = $encoder;
     }
 
 
@@ -25,8 +27,21 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr-FR');
 
-        // USER        
-        for ($i=1; $i <=10 ; $i++) { 
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+        $manager->persist(($adminRole));
+
+        // MOI Admin
+        $adminUser = new User();
+        $adminUser->setFirstName('Isabelle')
+            ->setLastName('Mustin')
+            ->setEmail('isabellemustin@aol.com')
+            ->setPassword($this->encoder->encodePassword($adminUser, 'password'))
+            ->addUserRole($adminRole);
+        $manager->persist($adminUser);
+
+        // USER Faker       
+        for ($i = 1; $i <= 10; $i++) {
             $user = new User();
 
             $password = $this->encoder->encodePassword($user, 'password');
@@ -36,11 +51,11 @@ class AppFixtures extends Fixture
                 ->setEmail($faker->email)
                 ->setPassword($password);
 
-                $manager->persist($user);
+            $manager->persist($user);
         }
-        
 
-        
+
+
         // CATEGORY - FRUIT        
         $category1 = new Category();
         $category1->setTitle("pommiers")

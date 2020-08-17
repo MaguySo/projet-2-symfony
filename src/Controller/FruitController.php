@@ -8,6 +8,7 @@ use App\Repository\FruitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FruitController extends AbstractController
@@ -27,32 +28,33 @@ class FruitController extends AbstractController
      * CREER UN FRUIT - Formulaire
      * 
      * @Route("/fruits/new", name="fruits_create")
+     * @IsGranted("ROLE_ADMIN")
      * 
      * @return Response
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
-        $fruit = new Fruit();      
+        $fruit = new Fruit();
 
         $form = $this->createForm(FruitType::class, $fruit);
 
-        $form->handleRequest($request); 
+        $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()){
-                foreach($fruit->getImages() as $image){
-                    $image->setFruit($fruit);
-                    $manager->persist($image);
-                }
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($fruit->getImages() as $image) {
+                $image->setFruit($fruit);
+                $manager->persist($image);
+            }
 
             $manager->persist($fruit);
             $manager->flush();
 
             $this->addFlash(
                 'success',
-                "L'annonce {$fruit->getName()} est bien enregistrée !"
+                "Le fruit {$fruit->getName()} est bien enregistré !"
             );
 
-            return $this->redirectToRoute('fruits_show',[
+            return $this->redirectToRoute('fruits_show', [
                 'slug' => $fruit->getSlug()
             ]);
         }
@@ -68,6 +70,7 @@ class FruitController extends AbstractController
      * EDITER UN FRUIT - Afficher le formulaire - Utilisation du ParamConverter
      * 
      * @Route("/fruits/{slug}/edit", name="fruits_edit")
+     * @IsGranted("ROLE_ADMIN")
      * 
      * @return Response
      */
@@ -78,26 +81,26 @@ class FruitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach($fruit->getImages() as $image){
+            foreach ($fruit->getImages() as $image) {
                 $image->setFruit($fruit);
                 $manager->persist($image);
             }
 
-        $manager->persist($fruit);
-        $manager->flush();
+            $manager->persist($fruit);
+            $manager->flush();
 
-        $this->addFlash(
-            'success',
-            "Les modifications de {$fruit->getName()} sont réalisées"
-        );
+            $this->addFlash(
+                'success',
+                "Les modifications de {$fruit->getName()} sont réalisées"
+            );
 
-        return $this->redirectToRoute('fruits_show',[
-            'slug' => $fruit->getSlug()
-        ]);
-    }
+            return $this->redirectToRoute('fruits_show', [
+                'slug' => $fruit->getSlug()
+            ]);
+        }
 
 
-        return $this->render('fruit/edit.html.twig',[
+        return $this->render('fruit/edit.html.twig', [
             'form' => $form->createView(),
             'fruit' => $fruit
         ]);
@@ -117,5 +120,28 @@ class FruitController extends AbstractController
         return $this->render('fruit/show.html.twig', [
             'fruit' => $fruit
         ]);
+    }
+
+    /**
+     * SUPPRIMER UNE ANNONCE
+     * 
+     * @Route("/fruits/{slug}/delete", name="fruits_delete")
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @param fruit $fruit
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function delete(fruit $fruit, EntityManagerInterface $manager)
+    {
+        $manager->remove($fruit);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le fruit {$fruit->getName()} est supprimé !"
+        );
+
+        return $this->redirectToRoute("fruits_index");
     }
 }

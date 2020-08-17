@@ -81,9 +81,15 @@ class Fruit
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Cart::class, mappedBy="fruit")
+     */
+    private $carts;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->carts = new ArrayCollection();
     }
 
 
@@ -217,6 +223,34 @@ class Fruit
             if ($image->getFruit() === $this) {
                 $image->setFruit(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cart[]
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts[] = $cart;
+            $cart->addFruit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->carts->contains($cart)) {
+            $this->carts->removeElement($cart);
+            $cart->removeFruit($this);
         }
 
         return $this;
